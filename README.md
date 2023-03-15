@@ -29,5 +29,5 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### 'npm i react-qr-code'
+### `npm i react-qr-code`
 A component for React. This library works with React and React Native
