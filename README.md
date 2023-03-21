@@ -33,3 +33,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 A component for React. This library works with React and React Native
 
 URL- https://www.npmjs.com/package/react-qr-code 
+import QRCode from 'qrcode.react';

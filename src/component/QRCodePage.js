@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import QRCode from "react-qr-code";
+import QRCode from "qrcode.react";
 
 function QRCodePage() {
   const [inputText, setInputText] = useState("");
   const [phoneNumber, setphoneNumber] = useState();
-  const [qrCodeText, setQRCodeText] = useState("youtube.com");
+  const [qrCodeText, setQRCodeText] = useState("example.com");
   const [qrColor, setQrColor] = useState("blue");
   const [qrBGColor, setQrBGColor] = useState("rgb(247 247 247)");
 
@@ -62,11 +62,13 @@ function QRCodePage() {
 
   // download QR code
   const downloadQRCode = () => {
+    console.log("Downloading QR Code");
+    console.log("Downloading QR Code");
     const qrCodeURL = document
       .getElementById("qrCodeEl")
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
-    console.log(qrCodeURL);
+    console.log("url: "+qrCodeURL);
     let aEl = document.createElement("a");
     aEl.href = qrCodeURL;
     aEl.download = "QR_Code.png";
@@ -212,7 +214,7 @@ function QRCodePage() {
       <div className="container input-group my-3">
         {showText && (
           <div className="container">
-            <label for="exampleFormControlInput1" className="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Massage
             </label>
             <textArea
@@ -227,7 +229,7 @@ function QRCodePage() {
         )}
         {showUrl && (
           <div className="container">
-            <label for="exampleFormControlInput1" className="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               URL link
             </label>
             <input
@@ -241,7 +243,7 @@ function QRCodePage() {
         )}
         {showPhone && (
           <div className="container">
-            <label for="exampleFormControlInput1" className="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Mobile
             </label>
             <input
@@ -255,7 +257,7 @@ function QRCodePage() {
         )}
         {showSMS && (
           <div className="container mb-3">
-            <label for="exampleFormControlInput1" className="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Mobile Number
             </label>
             <input
@@ -265,7 +267,7 @@ function QRCodePage() {
               value={phoneNumber}
               onChange={(e) => setphoneNumber(e.target.value)}
             />
-            <label for="exampleFormControlInput1" className="form-label mt-4">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-4">
               Your massage
             </label>
             <textarea
@@ -282,7 +284,7 @@ function QRCodePage() {
           <div className="container">
             <div className="row row-cols-2  mb-3">
               <div className="col">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Full Name
                 </label>
                 <input
@@ -294,7 +296,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Street Address
                 </label>
                 <textArea
@@ -307,7 +309,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Company Name
                 </label>
                 <input
@@ -319,7 +321,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   City
                 </label>
                 <input
@@ -331,7 +333,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Email
                 </label>
                 <input
@@ -343,7 +345,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Pin Code
                 </label>
                 <input
@@ -355,7 +357,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Personal Number
                 </label>
                 <input
@@ -367,7 +369,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Office Number
                 </label>
                 <input
@@ -379,7 +381,7 @@ function QRCodePage() {
                 />
               </div>
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Country
                 </label>
                 <input
@@ -392,7 +394,7 @@ function QRCodePage() {
               </div>
 
               <div className="col mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label htmlFor="exampleFormControlInput1" className="form-label">
                   Company url
                 </label>
                 <input
@@ -408,7 +410,7 @@ function QRCodePage() {
         )}
         {showWifi && (
           <div className="container">
-            <label for="exampleFormControlInput1" className="form-label mt-2">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-2">
               Authentication:
             </label>
             <select
@@ -421,7 +423,7 @@ function QRCodePage() {
               <option value="WPA">WPA/WPA2</option>
               <option value="nopass">None</option>
             </select>
-            <label for="exampleFormControlInput1" className="form-label mt-4">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-4">
               SSID:
             </label>
             <input
@@ -431,7 +433,7 @@ function QRCodePage() {
               value={network}
               onChange={(e) => setnetwork(e.target.value)}
             />
-            <label for="exampleFormControlInput1" className="form-label mt-4">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-4">
               Password
             </label>
             <input
@@ -445,7 +447,7 @@ function QRCodePage() {
         )}
         {showEmail && (
           <div className="container">
-            <label for="exampleFormControlInput1" className="form-label mt-2">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-2">
               Email
             </label>
             <input
@@ -455,7 +457,7 @@ function QRCodePage() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             />
-            <label for="exampleFormControlInput1" className="form-label mt-4">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-4">
               Subject
             </label>
             <input
@@ -465,7 +467,7 @@ function QRCodePage() {
               value={emailSubject}
               onChange={(e) => setemailSubject(e.target.value)}
             />
-            <label for="exampleFormControlInput1" className="form-label mt-4">
+            <label htmlFor="exampleFormControlInput1" className="form-label mt-4">
               Body
             </label>
             <textArea
@@ -499,7 +501,6 @@ function QRCodePage() {
               level="H"
             />
           </div>
-
           <div className="p-2 my-3">
             <label htmlFor="exampleColorInput" className="form-label">
               QR Color
