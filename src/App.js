@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       {/* <Text /> */}
-      {/* <Navbar />  */}
-      <QRCodePage/>
+      <Navbar /> 
+      {/* <QRCodePage/> */}
       {/* <QrcodeDisp/> */}
     </>
   );
