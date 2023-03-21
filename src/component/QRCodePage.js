@@ -17,40 +17,45 @@ function QRCodePage() {
       setQRCodeText(inputText);
       console.log("Your url is: " + inputText);
     } else if (showPhone) {
-      setQRCodeText("TEL:" + inputText);
+      setQRCodeText("tel:" + inputText);
       console.log("Your phone number is: " + inputText);
     } else if (showSMS) {
       setQRCodeText("SMSTO:" + phoneNumber + ":" + inputText);
       console.log("SMSTO:" + phoneNumber + ":" + inputText);
     } else if (showVcard) {
       setQRCodeText(
-        "Name:" +
-          inputText +
-          "\nPhone:" +
-          vcardPhone +
-          "\nphone:" +
-          vcardPhone2 +
-          "\nEmail:" +
-          vcardEmail +
-          "\nWebsite:" +
-          vcardUrl +
-          "\nAddress:" +
-          vcardStreet +
-          "\n" +
-          vcardCity +
-          "\n" +
-          vcardPin +
-          "\n" +
-          vcardCountry +
-          "\nCompany:" +
-          vcardOrg
+        `BEGIN:VCARD\nVERSION:3.0\nN:${inputText}\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nTEL:${vcardPhone2}\nADR:${
+          vcardStreet + ", " + vcardCity + ", " + vcardPin + ", " + vcardCountry
+        }\nURL:${vcardUrl}\norg:${vcardOrg}\nEND:VCARD`
+      );
+
+      console.log(
+        `BEGIN:VCARD\nVERSION:3.0\nN:${inputText}\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nTEL:${vcardPhone2}\nADR:${
+          vcardStreet + ", " + vcardCity + ", " + vcardPin + ", " + vcardCountry
+        }\nURL:${vcardUrl}\norg:${vcardOrg}\nEND:VCARD`
       );
     } else if (showWifi) {
-      setQRCodeText(`WIFI:T:${inputText};S:${network};P:${networkPassword};`)
-      console.log("SSID:"+network + "\nPassword:" +networkPassword+"\nSecurity:"+inputText);
-    }else if (showEmail) {
-      setQRCodeText("mailto:"+inputText +"?subject=" + emailSubject+ "&body="+ textArea);
-      console.log("mailto:"+inputText +"\nsubject=" + emailSubject+ "\nbody="+ textArea)
+      setQRCodeText(`WIFI:T:${inputText};S:${network};P:${networkPassword};`);
+      console.log(
+        "SSID:" +
+          network +
+          "\nPassword:" +
+          networkPassword +
+          "\nSecurity:" +
+          inputText
+      );
+    } else if (showEmail) {
+      setQRCodeText(
+        "mailto:" + inputText + "?subject=" + emailSubject + "&body=" + textArea
+      );
+      console.log(
+        "mailto:" +
+          inputText +
+          "\nsubject=" +
+          emailSubject +
+          "\nbody=" +
+          textArea
+      );
       // setQRCodeText("Email:"+inputText + "\nSubject:" +emailSubject+"\nBody:"+textArea)
     }
   };
@@ -70,7 +75,7 @@ function QRCodePage() {
     document.body.removeChild(aEl);
   };
 
-  const [showText, setshowText] = useState(false);
+  const [showText, setshowText] = useState(true);
   const [showUrl, setshowUrl] = useState(false);
   const [showPhone, setshowPhone] = useState(false);
   const [showSMS, setshowSMS] = useState(false);
@@ -208,12 +213,13 @@ function QRCodePage() {
         {showText && (
           <div className="container">
             <label for="exampleFormControlInput1" className="form-label">
-              Phone
+              Massage
             </label>
-            <input
+            <textArea
               className="rounded-start form-control border-primary border-2  "
               type="search"
-              placeholder="type your text"
+              rows="3"
+              placeholder="type your massage"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             />
@@ -282,7 +288,7 @@ function QRCodePage() {
                 <input
                   className="rounded-start form-control border-primary border-2 "
                   type="text"
-                  placeholder="type your name"
+                  placeholder="Enter your name"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                 />
@@ -482,7 +488,6 @@ function QRCodePage() {
         />
       </div>
       <div className="container my-3 text-center">
-        
         <div className=" d-flex justify-content-center">
           <div className="p-2 ">
             <QRCode
