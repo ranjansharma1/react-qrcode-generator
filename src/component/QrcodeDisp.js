@@ -4,7 +4,7 @@ import QRCode from "qrcode.react";
 function QrcodeDisp(props) {
   const [qrColor, setQrColor] = useState("blue");
   const [qrBGColor, setQrBGColor] = useState("white");
-  const [qrSize, setQrSize] = useState("300");
+  const [qrSize, setQrSize] = useState("150");
 
   // download QR code
   const downloadQRCode = () => {
@@ -25,30 +25,30 @@ function QrcodeDisp(props) {
 
   return (
     <>
-      <div className="col-5 mx-5 ">
-        <h2>QR Code Preview</h2>
+      <div className="col-4 mx-5 ">
+        <h4>QR Code Preview</h4>
         <hr />
         <div
           className={`text-center border border-${props.mode === "light" ? "dark" : "white"} ` }
           style={{
             margin: "50px",
-            height: "750px",
+            height: "700px",
             width: "600px"
             
           }}
         >
-          <h3 className="text-start mx-3 my-2 fw-bold">Select Size</h3>
+          <h5 className="text-start mx-3 my-2 fw-bold">Select Size</h5>
           <input
             type="range"
             className="form-range w-75"
             id="customRange1"
-            min="200"
-            max="450"
+            min="50"
+            max="300"
             value={qrSize}
             onChange={(e) => setQrSize(e.target.value)}
           />
           <hr className="mx-3" />
-          <h3 className="text-start mx-3 my-2 fw-bold">Change Colour</h3>
+          <h5 className="text-start mx-3 my-2 fw-bold">Change Colour</h5>
 
           <div className="d-flex my-3">
             <div className="  py-2 h-25 w-auto ">

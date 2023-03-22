@@ -103,14 +103,12 @@ function UserForm(props) {
               backgroundColor: props.mode === "light" ? "rgb(235 247 255)" : "grey",
               color: props.mode === "light" ? "black" : "white",
             }}>
-        <h1>Create Your Own QR Code Just by Few Clicks</h1>
-        <hr />
+        
         <div className="row ">
-          <form className="col-6 mx-4" onSubmit={generateQRCode}>
-            <div
-              className="container input-group"
-              style={{ marginTop: "30px" }}
-            >
+          <form className="col-5 mx-2" onSubmit={generateQRCode}>
+          <h4>Create Your Own QR Code Just by Few Clicks</h4>
+        <hr />
+            <div className="container input-group"  style={{ marginTop: "30px" }}  >
               {props.show.showText && (
                 <div className="container">
                   <label
