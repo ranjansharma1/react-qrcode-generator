@@ -7,57 +7,80 @@ function Navbar() {
   const [qrCodeText, setQRCodeText] = useState("example.com");
   const [qrColor, setQrColor] = useState("blue");
   const [qrBGColor, setQrBGColor] = useState("white");
-  const [qrSize, setQrSize] = useState("200")
+  const [qrSize, setQrSize] = useState("200");
 
   // generate QR code
-  const generateQRCode = () => {
-    if (showText) {
-      setQRCodeText(inputText);
-      console.log("Your entered text massage is: " + inputText);
-    } else if (showUrl) {
-      setQRCodeText(inputText);
-      console.log("Your url is: " + inputText);
-    } else if (showPhone) {
-      setQRCodeText("tel:" + inputText);
-      console.log("Your phone number is: " + inputText);
-    } else if (showSMS) {
-      setQRCodeText("SMSTO:" + phoneNumber + ":" + inputText);
-      console.log("SMSTO:" + phoneNumber + ":" + inputText);
-    } else if (showVcard) {
-      setQRCodeText(
-        `BEGIN:VCARD\nVERSION:3.0\nN:${inputText}\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nTEL:${vcardPhone2}\nADR:${
-          vcardStreet + ", " + vcardCity + ", " + vcardPin + ", " + vcardCountry
-        }\nURL:${vcardUrl}\norg:${vcardOrg}\nEND:VCARD`
-      );
+  const generateQRCode = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    if (form.checkValidity()) {
+      if (showText) {
+        setQRCodeText(inputText);
+        console.log("Your entered text massage is: " + inputText);
+      } else if (showUrl) {
+        setQRCodeText(inputText);
+        console.log("Your url is: " + inputText);
+      } else if (showPhone) {
+        setQRCodeText("tel:" + inputText);
+        console.log("Your phone number is: " + inputText);
+      } else if (showSMS) {
+        setQRCodeText("SMSTO:" + phoneNumber + ":" + inputText);
+        console.log("SMSTO:" + phoneNumber + ":" + inputText);
+      } else if (showVcard) {
+        setQRCodeText(
+          `BEGIN:VCARD\nVERSION:3.0\nN:${inputText}\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nTEL:${vcardPhone2}\nADR:${
+            vcardStreet +
+            ", " +
+            vcardCity +
+            ", " +
+            vcardPin +
+            ", " +
+            vcardCountry
+          }\nURL:${vcardUrl}\norg:${vcardOrg}\nEND:VCARD`
+        );
 
-      console.log(
-        `BEGIN:VCARD\nVERSION:3.0\nN:${inputText}\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nTEL:${vcardPhone2}\nADR:${
-          vcardStreet + ", " + vcardCity + ", " + vcardPin + ", " + vcardCountry
-        }\nURL:${vcardUrl}\norg:${vcardOrg}\nEND:VCARD`
-      );
-    } else if (showWifi) {
-      setQRCodeText(`WIFI:T:${inputText};S:${network};P:${networkPassword};`);
-      console.log(
-        "SSID:" +
-          network +
-          "\nPassword:" +
-          networkPassword +
-          "\nSecurity:" +
-          inputText
-      );
-    } else if (showEmail) {
-      setQRCodeText(
-        "mailto:" + inputText + "?subject=" + emailSubject + "&body=" + textArea
-      );
-      console.log(
-        "mailto:" +
-          inputText +
-          "\nsubject=" +
-          emailSubject +
-          "\nbody=" +
-          textArea
-      );
-      // setQRCodeText("Email:"+inputText + "\nSubject:" +emailSubject+"\nBody:"+textArea)
+        console.log(
+          `BEGIN:VCARD\nVERSION:3.0\nN:${inputText}\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nTEL:${vcardPhone2}\nADR:${
+            vcardStreet +
+            ", " +
+            vcardCity +
+            ", " +
+            vcardPin +
+            ", " +
+            vcardCountry
+          }\nURL:${vcardUrl}\norg:${vcardOrg}\nEND:VCARD`
+        );
+      } else if (showWifi) {
+        setQRCodeText(`WIFI:T:${inputText};S:${network};P:${networkPassword};`);
+        console.log(
+          "SSID:" +
+            network +
+            "\nPassword:" +
+            networkPassword +
+            "\nSecurity:" +
+            inputText
+        );
+      } else if (showEmail) {
+        setQRCodeText(
+          "mailto:" +
+            inputText +
+            "?subject=" +
+            emailSubject +
+            "&body=" +
+            textArea
+        );
+        console.log(
+          "mailto:" +
+            inputText +
+            "\nsubject=" +
+            emailSubject +
+            "\nbody=" +
+            textArea
+        );
+        // setQRCodeText("Email:"+inputText + "\nSubject:" +emailSubject+"\nBody:"+textArea)
+      }
+    } else {
+      form.reportValidity();
     }
   };
 
@@ -165,7 +188,6 @@ function Navbar() {
       console.log("email button clicked");
     }
   };
-
   return (
     <>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary ">
@@ -274,7 +296,7 @@ function Navbar() {
         <h1>Create Your Own QR Code Just by Few Clicks</h1>
         <hr />
         <div className="row ">
-          <div className="col-6 mx-4">
+          <form className="col-6 mx-4" onSubmit={generateQRCode}>
             <div
               className="container input-group"
               style={{ marginTop: "30px" }}
@@ -294,6 +316,7 @@ function Navbar() {
                     placeholder="type your massage"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    required
                   />
                 </div>
               )}
@@ -311,6 +334,7 @@ function Navbar() {
                     placeholder="https://xyz.com/"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    required
                   />
                 </div>
               )}
@@ -328,6 +352,7 @@ function Navbar() {
                     placeholder="+91 "
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    required
                   />
                 </div>
               )}
@@ -345,6 +370,7 @@ function Navbar() {
                     placeholder="type your number"
                     value={phoneNumber}
                     onChange={(e) => setphoneNumber(e.target.value)}
+                    required
                   />
                   <label
                     htmlFor="exampleFormControlInput1"
@@ -359,6 +385,7 @@ function Navbar() {
                     placeholder="type your massage"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    required
                   />
                 </div>
               )}
@@ -378,6 +405,7 @@ function Navbar() {
                         placeholder="Enter your name"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="col mb-3">
@@ -424,6 +452,7 @@ function Navbar() {
                         placeholder="city"
                         value={vcardCity}
                         onChange={(e) => setvcardCity(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="col mb-3">
@@ -469,6 +498,7 @@ function Navbar() {
                         placeholder="+91"
                         value={vcardPhone}
                         onChange={(e) => setvcardPhone(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="col mb-3">
@@ -533,6 +563,7 @@ function Navbar() {
                     aria-label="Default select example"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    required
                   >
                     <option value="WEP">WEP</option>
                     <option value="WPA">WPA/WPA2</option>
@@ -550,6 +581,7 @@ function Navbar() {
                     placeholder="Network Name"
                     value={network}
                     onChange={(e) => setnetwork(e.target.value)}
+                    required
                   />
                   <label
                     htmlFor="exampleFormControlInput1"
@@ -563,6 +595,7 @@ function Navbar() {
                     placeholder="subject"
                     value={networkPassword}
                     onChange={(e) => setnetworkPassword(e.target.value)}
+                    required
                   />
                 </div>
               )}
@@ -580,6 +613,7 @@ function Navbar() {
                     placeholder="abc@gmail.com"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
+                    required
                   />
                   <label
                     htmlFor="exampleFormControlInput1"
@@ -593,6 +627,7 @@ function Navbar() {
                     placeholder="subject"
                     value={emailSubject}
                     onChange={(e) => setemailSubject(e.target.value)}
+                    required
                   />
                   <label
                     htmlFor="exampleFormControlInput1"
@@ -607,35 +642,42 @@ function Navbar() {
                     placeholder="type your massage here..."
                     value={textArea}
                     onChange={(e) => settextArea(e.target.value)}
+                    required
                   />
                 </div>
               )}
             </div>
-            <div className="container text-center">
-              <input
-                className="input-group-text mx-0 btn btn-primary m-4 rounded-end"
-                type="button"
-                value="Generate"
-                onClick={generateQRCode}
-              />
+            <div className="container text-center my-3">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                id="submitButton"
+              >
+                Generate QR
+              </button>
             </div>
-          </div>
-          <div className="col-5 ms-5">
+          </form>
+          <div className="col-5 mx-5 ">
             <h2>QR Code Preview</h2>
             <hr />
             <div
               className="text-center"
               style={{
-                margin:"50px",
+                margin: "50px",
                 border: "1px solid blue",
-                height: "800px",
+                height: "750px",
                 width: "600px",
               }}
             >
-              <h3 class="text-start mx-3 my-2 fw-bold">
-                Select Size
-              </h3>
-              <input type="range" class="form-range w-75" id="customRange1" min="200" max="450"  onChange={(e)=>setQrSize(e.target.value)}/>
+              <h3 class="text-start mx-3 my-2 fw-bold">Select Size</h3>
+              <input
+                type="range"
+                class="form-range w-75"
+                id="customRange1"
+                min="200"
+                max="450"
+                onChange={(e) => setQrSize(e.target.value)}
+              />
               <hr className="mx-3" />
               <h3 className="text-start mx-3 my-2 fw-bold">Colour</h3>
 
