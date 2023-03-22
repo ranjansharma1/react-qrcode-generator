@@ -28,10 +28,9 @@ function QrcodeDisp(props) {
         <h2>QR Code Preview</h2>
         <hr />
         <div
-          className="text-center"
+          className={`text-center border border-${props.mode === "light" ? "black" : "white"}`}
           style={{
             margin: "50px",
-            border: "1px solid blue",
             height: "750px",
             width: "600px",
           }}

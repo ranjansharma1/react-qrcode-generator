@@ -1,9 +1,12 @@
 
 import React,{useState} from "react";
+import Alert from "./component/Alert";
 import Navbar from "./component/Navbar";
 import UserForm from "./component/UserForm";
 
 function App() {
+  const [darkMode, setdarkMode] = useState("light");
+  const [alert, setalert] = useState(null);
   const [showText, setshowText] = useState(true);
   const [showUrl, setshowUrl] = useState(false);
   const [showPhone, setshowPhone] = useState(false);
@@ -89,10 +92,37 @@ function App() {
     }
   };
 
+  const enableDarkMode = () => {
+    if (darkMode === "light") {
+      console.log("enable dark mode");
+      setdarkMode("dark");
+      document.body.style.backgroundColor = "grey";
+      showAlert("Dark mode enabled", "success");
+    } else {
+      console.log("disable dark mode");
+      setdarkMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("Light mode enabled", "success");
+    }
+  };
+  const showAlert = (message, type) => {
+    setalert({
+      msg: message,
+      type: type,
+    });
+    //It will fade out after 3 seconds
+    setTimeout(() => {
+      setalert(null);
+    }, 3000);
+    console.log("Set Alert successfully executed: ", message, type);
+  };
+
   return (
     <>
-      <Navbar handleButtonClick={handleButtonClick} show={show} />
-      <UserForm show={show}/>
+      <Navbar handleButtonClick={handleButtonClick} show={show} mode={darkMode}
+        toggleMode={enableDarkMode}/>
+        <Alert alert={alert} />
+      <UserForm show={show} mode={darkMode}/>
       
     </>
   );

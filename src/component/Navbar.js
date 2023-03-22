@@ -1,10 +1,9 @@
 import React from "react";
 
 function Navbar(props) {
-
   return (
     <>
-      <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary ">
+      <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`} >
         <div className="container-fluid">
           <a className="navbar-brand fw-bolder" href="/">
             QR Code
@@ -29,7 +28,7 @@ function Navbar(props) {
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showText ? "active" : ""
-                  } btn btn-light  px-4   my-1`}
+                  } btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("text")}
                   style={{ width: "100px" }}
                 >
@@ -40,7 +39,7 @@ function Navbar(props) {
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showUrl ? "active" : ""
-                  } btn btn-light  px-4   my-1`}
+                  } btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("url")}
                   style={{ width: "100px" }}
                 >
@@ -51,7 +50,7 @@ function Navbar(props) {
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showPhone ? "active" : ""
-                  }   btn btn-light  px-4   my-1`}
+                  }   btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("phone")}
                   style={{ width: "100px" }}
                 >
@@ -62,7 +61,7 @@ function Navbar(props) {
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showSMS ? "active" : ""
-                  }  btn btn-light  px-4   my-1`}
+                  }  btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("sms")}
                   style={{ width: "100px" }}
                 >
@@ -73,7 +72,7 @@ function Navbar(props) {
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showVcard ? "active" : ""
-                  }  btn btn-light  px-4   my-1`}
+                  }  btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("vcard")}
                   style={{ width: "100px", border: "none" }}
                 >
@@ -84,29 +83,48 @@ function Navbar(props) {
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showWifi ? "active" : ""
-                  }   btn btn-light  px-4   my-1`}
+                  }   btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("wifi")}
                   style={{ width: "100px" }}
                 >
-                  wifi
+                  Wifi
                 </button>
               </li>
               <li className="nav-item">
                 <button
                   className={`fw-bold  nav-link ${
                     props.show.showEmail ? "active" : ""
-                  }  btn btn-light  px-4   my-1`}
+                  }  btn btn-${props.mode}  px-4   my-1`}
                   onClick={() => props.handleButtonClick("email")}
                   style={{ width: "100px" }}
                 >
-                  email
+                  Email
                 </button>
               </li>
             </ul>
+            {/* htmlFor Enabling Dark Mode */}
+            <div
+              className={`form-check form-switch text-${
+                props.mode === "light" ? "dark" : "light"
+              }`}
+            >
+              <input
+                className="form-check-input"
+                onClick={props.toggleMode}
+                type="checkbox"
+                role="switch"
+                id="dId"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
+                Dark Mode
+              </label>
+            </div>
           </div>
         </div>
       </nav>
-      
     </>
   );
 }

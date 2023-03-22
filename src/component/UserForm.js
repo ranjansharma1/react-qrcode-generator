@@ -97,7 +97,10 @@ function UserForm(props) {
 
   return (
     <>
-      <div className="container-fluid" style={{ marginTop: "100px" }}>
+      <div className="container-fluid " style={{
+              backgroundColor: props.mode === "light" ? "white" : "grey",
+              color: props.mode === "light" ? "black" : "white",
+            }}>
         <h1>Create Your Own QR Code Just by Few Clicks</h1>
         <hr />
         <div className="row ">
@@ -115,7 +118,7 @@ function UserForm(props) {
                     Massage
                   </label>
                   <textArea
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="search"
                     rows="3"
                     placeholder="type your massage"
@@ -134,7 +137,7 @@ function UserForm(props) {
                     URL link
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="search"
                     placeholder="https://xyz.com/"
                     value={inputText}
@@ -152,7 +155,7 @@ function UserForm(props) {
                     Mobile
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="number"
                     placeholder="+91 "
                     value={inputText}
@@ -170,7 +173,7 @@ function UserForm(props) {
                     Mobile Number
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2"
+                    className="rounded-start form-control border-dark border-2"
                     type="number"
                     placeholder="type your number"
                     value={phoneNumber}
@@ -184,7 +187,7 @@ function UserForm(props) {
                     Your massage
                   </label>
                   <textarea
-                    className="rounded-start form-control border-primary border-2 "
+                    className="rounded-start form-control border-dark border-2 "
                     type=""
                     rows="3"
                     placeholder="type your massage"
@@ -205,7 +208,7 @@ function UserForm(props) {
                         Full Name
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2 "
+                        className="rounded-start form-control border-dark border-2 "
                         type="text"
                         placeholder="Enter your name"
                         value={inputText}
@@ -221,7 +224,7 @@ function UserForm(props) {
                         Street Address
                       </label>
                       <textArea
-                        className="rounded-start form-control border-primary border-2"
+                        className="rounded-start form-control border-dark border-2"
                         type="text"
                         rows="1"
                         placeholder="street address"
@@ -237,7 +240,7 @@ function UserForm(props) {
                         Company Name
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2 "
+                        className="rounded-start form-control border-dark border-2 "
                         type="text"
                         placeholder="Organization"
                         value={vcardOrg}
@@ -252,7 +255,7 @@ function UserForm(props) {
                         City
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2 "
+                        className="rounded-start form-control border-dark border-2 "
                         type="text"
                         placeholder="city"
                         value={vcardCity}
@@ -268,7 +271,7 @@ function UserForm(props) {
                         Email
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2"
+                        className="rounded-start form-control border-dark border-2"
                         type="email"
                         placeholder="abc@example.com"
                         value={vcardEmail}
@@ -283,7 +286,7 @@ function UserForm(props) {
                         Pin Code
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2 "
+                        className="rounded-start form-control border-dark border-2 "
                         type="number"
                         placeholder="Area pin code"
                         value={vcardPin}
@@ -298,7 +301,7 @@ function UserForm(props) {
                         Personal Number
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2"
+                        className="rounded-start form-control border-dark border-2"
                         type="number"
                         placeholder="+91"
                         value={vcardPhone}
@@ -314,7 +317,7 @@ function UserForm(props) {
                         Office Number
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2 "
+                        className="rounded-start form-control border-dark border-2 "
                         type="number"
                         placeholder="+91 "
                         value={vcardPhone2}
@@ -329,7 +332,7 @@ function UserForm(props) {
                         Country
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2"
+                        className="rounded-start form-control border-dark border-2"
                         type="text"
                         placeholder="country name"
                         value={vcardCountry}
@@ -345,7 +348,7 @@ function UserForm(props) {
                         Company url
                       </label>
                       <input
-                        className="rounded-start form-control border-primary border-2"
+                        className="rounded-start form-control border-dark border-2"
                         type="text"
                         placeholder="http://xyz.me/"
                         value={vcardUrl}
@@ -381,7 +384,7 @@ function UserForm(props) {
                     SSID:
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="text"
                     placeholder="Network Name"
                     value={network}
@@ -395,7 +398,7 @@ function UserForm(props) {
                     Password
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="password"
                     placeholder="subject"
                     value={networkPassword}
@@ -413,7 +416,7 @@ function UserForm(props) {
                     Email
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="text"
                     placeholder="abc@gmail.com"
                     value={inputText}
@@ -427,7 +430,7 @@ function UserForm(props) {
                     Subject
                   </label>
                   <input
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="text"
                     placeholder="subject"
                     value={emailSubject}
@@ -441,7 +444,7 @@ function UserForm(props) {
                     Body
                   </label>
                   <textArea
-                    className="rounded-start form-control border-primary border-2  "
+                    className="rounded-start form-control border-dark border-2  "
                     type="text"
                     rows="4"
                     placeholder="type your massage here..."
@@ -463,7 +466,7 @@ function UserForm(props) {
             </div>
           </form>
 
-          <QrcodeDisp qrText={qrCodeText} />
+          <QrcodeDisp qrText={qrCodeText} mode={props.mode}/>
         </div>
       </div>
     </>
