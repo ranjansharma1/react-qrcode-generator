@@ -20,6 +20,7 @@ function QrcodeDisp(props) {
     document.body.appendChild(aEl);
     aEl.click();
     document.body.removeChild(aEl);
+    props.showAlert("QR Code Donloaded Successfully" , "success");
   };
 
   return (
@@ -28,11 +29,12 @@ function QrcodeDisp(props) {
         <h2>QR Code Preview</h2>
         <hr />
         <div
-          className={`text-center border border-${props.mode === "light" ? "black" : "white"}`}
+          className={`text-center border border-${props.mode === "light" ? "dark" : "white"} ` }
           style={{
             margin: "50px",
             height: "750px",
-            width: "600px",
+            width: "600px"
+            
           }}
         >
           <h3 className="text-start mx-3 my-2 fw-bold">Select Size</h3>
@@ -46,7 +48,7 @@ function QrcodeDisp(props) {
             onChange={(e) => setQrSize(e.target.value)}
           />
           <hr className="mx-3" />
-          <h3 className="text-start mx-3 my-2 fw-bold">Colour</h3>
+          <h3 className="text-start mx-3 my-2 fw-bold">Change Colour</h3>
 
           <div className="d-flex my-3">
             <div className="  py-2 h-25 w-auto ">

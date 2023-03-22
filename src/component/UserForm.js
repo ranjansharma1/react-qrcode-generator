@@ -24,6 +24,7 @@ function UserForm(props) {
     event.preventDefault();
     const form = event.target;
     if (form.checkValidity()) {
+      props.showAlert("QR Code generated successfully","success");
       if (props.show.showText) {
         setQRCodeText(inputText);
         console.log("Your entered text massage is: " + inputText);
@@ -90,6 +91,7 @@ function UserForm(props) {
         // setQRCodeText("Email:"+inputText + "\nSubject:" +emailSubject+"\nBody:"+textArea)
       }
     } else {
+      props.showAlert("QRCode generation failed- Please Input the required information", "danger")
       form.reportValidity();
     }
   };
@@ -98,7 +100,7 @@ function UserForm(props) {
   return (
     <>
       <div className="container-fluid " style={{
-              backgroundColor: props.mode === "light" ? "white" : "grey",
+              backgroundColor: props.mode === "light" ? "rgb(235 247 255)" : "grey",
               color: props.mode === "light" ? "black" : "white",
             }}>
         <h1>Create Your Own QR Code Just by Few Clicks</h1>
@@ -466,7 +468,7 @@ function UserForm(props) {
             </div>
           </form>
 
-          <QrcodeDisp qrText={qrCodeText} mode={props.mode}/>
+          <QrcodeDisp qrText={qrCodeText} mode={props.mode} showAlert={props.showAlert}/>
         </div>
       </div>
     </>

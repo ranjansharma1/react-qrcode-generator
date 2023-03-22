@@ -101,7 +101,7 @@ function App() {
     } else {
       console.log("disable dark mode");
       setdarkMode("light");
-      document.body.style.backgroundColor = "white";
+      document.body.style.backgroundColor = "rgb(235 247 255)";
       showAlert("Light mode enabled", "success");
     }
   };
@@ -122,7 +122,7 @@ function App() {
       <Navbar handleButtonClick={handleButtonClick} show={show} mode={darkMode}
         toggleMode={enableDarkMode}/>
         <Alert alert={alert} />
-      <UserForm show={show} mode={darkMode}/>
+      <UserForm show={show} mode={darkMode} showAlert={showAlert}/>
       
     </>
   );
