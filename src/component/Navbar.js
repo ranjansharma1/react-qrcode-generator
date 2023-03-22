@@ -6,7 +6,8 @@ function Navbar() {
   const [phoneNumber, setphoneNumber] = useState();
   const [qrCodeText, setQRCodeText] = useState("example.com");
   const [qrColor, setQrColor] = useState("blue");
-  const [qrBGColor, setQrBGColor] = useState("rgb(247 247 247)");
+  const [qrBGColor, setQrBGColor] = useState("white");
+  const [qrSize, setQrSize] = useState("200")
 
   // generate QR code
   const generateQRCode = () => {
@@ -190,7 +191,9 @@ function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item ">
                 <button
-                  className={`fw-bold  nav-link ${showText?'active':''} btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showText ? "active" : ""
+                  } btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("text")}
                   style={{ width: "100px" }}
                 >
@@ -199,7 +202,9 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <button
-                  className= {`fw-bold  nav-link ${showUrl?'active':''} btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showUrl ? "active" : ""
+                  } btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("url")}
                   style={{ width: "100px" }}
                 >
@@ -208,7 +213,9 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <button
-                  className= {`fw-bold  nav-link ${showPhone?'active':''}   btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showPhone ? "active" : ""
+                  }   btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("phone")}
                   style={{ width: "100px" }}
                 >
@@ -217,7 +224,9 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <button
-                  className= {`fw-bold  nav-link ${showSMS?'active':''}  btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showSMS ? "active" : ""
+                  }  btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("sms")}
                   style={{ width: "100px" }}
                 >
@@ -226,7 +235,9 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <button
-                  className= {`fw-bold  nav-link ${showVcard?'active':''}  btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showVcard ? "active" : ""
+                  }  btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("vcard")}
                   style={{ width: "100px", border: "none" }}
                 >
@@ -235,7 +246,9 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <button
-                  className= {`fw-bold  nav-link ${showWifi?'active':''}   btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showWifi ? "active" : ""
+                  }   btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("wifi")}
                   style={{ width: "100px" }}
                 >
@@ -244,7 +257,9 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${showEmail?'active':''}  btn btn-light  px-4   my-1`}
+                  className={`fw-bold  nav-link ${
+                    showEmail ? "active" : ""
+                  }  btn btn-light  px-4   my-1`}
                   onClick={() => handleButtonClick("email")}
                   style={{ width: "100px" }}
                 >
@@ -255,11 +270,11 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      <div className="container-fluid" style={{ marginTop: "100px"}}>
+      <div className="container-fluid" style={{ marginTop: "100px" }}>
         <h1>Create Your Own QR Code Just by Few Clicks</h1>
         <hr />
         <div className="row ">
-          <div className="col-6 mx-4"  >
+          <div className="col-6 mx-4">
             <div
               className="container input-group"
               style={{ marginTop: "30px" }}
@@ -604,63 +619,83 @@ function Navbar() {
                 onClick={generateQRCode}
               />
             </div>
-          </div>                    
+          </div>
           <div className="col-5 ms-5">
             <h2>QR Code Preview</h2>
             <hr />
-            <div className="text-center" style={{ marginTop: "30px",marginLeft:"50px",   border: "1px solid blue", height:"550px", width:"500px"}}>
+            <div
+              className="text-center"
+              style={{
+                margin:"50px",
+                border: "1px solid blue",
+                height: "800px",
+                width: "600px",
+              }}
+            >
+              <h3 class="text-start mx-3 my-2 fw-bold">
+                Select Size
+              </h3>
+              <input type="range" class="form-range w-75" id="customRange1" min="200" max="450"  onChange={(e)=>setQrSize(e.target.value)}/>
+              <hr className="mx-3" />
               <h3 className="text-start mx-3 my-2 fw-bold">Colour</h3>
-              
-            <div className="d-flex my-3">
-              <div className="  py-2 h-25 w-auto " >
-                <label htmlFor="exampleColorInput" className="mx-4 text-uppercase fw-bold">
-                  Dots
-                </label>
-                <input
-                  type="color"
-                  className=" form-control-color"
-                  style={{  backgroundColor:"white"  }}
-                  id="exampleColorInput"
-                  value={qrColor}
-                  title="Choose your color2"
-                  onChange={(e) => setQrColor(e.target.value)}
-                />
-              </div>
-              <div className=" py-2 h-25 w-auto p-3" >
-                <label htmlFor="exampleColorInput" className="mx-4  text-uppercase fw-bold">
-                  Background
-                </label>
-                <input
-                  type="color"
-                  className=" form-control-color  "
-                  style={{backgroundColor:"white" }}
-                  id="exampleColorInput"
-                  value={qrBGColor}
-                  title="Choose your color"
-                  onChange={(e) => setQrBGColor(e.target.value)}
-                />
-              </div>
-            </div>
-            <hr />
-            <div className=" my-2" >
-              <QRCode
-              className="text-center me-3"
-                id="qrCodeEl"
-                size={300}
-                value={qrCodeText}
-                bgColor={qrBGColor}
-                fgColor={qrColor}
-                level="H"
-              />
-            </div>
 
-            <input
-              type="button"
-              className="download-btn btn btn-primary mt-2 mb-3"
-              style={{ width: "200px" }}
-              value="Download"
-              onClick={downloadQRCode}
-            />
+              <div className="d-flex my-3">
+                <div className="  py-2 h-25 w-auto ">
+                  <label
+                    htmlFor="exampleColorInput"
+                    className="mx-4 text-uppercase fw-bold"
+                  >
+                    Dots
+                  </label>
+                  <input
+                    type="color"
+                    className=" form-control-color"
+                    style={{ backgroundColor: "white" }}
+                    id="exampleColorInput"
+                    value={qrColor}
+                    title="Choose your color2"
+                    onChange={(e) => setQrColor(e.target.value)}
+                  />
+                </div>
+                <div className=" py-2 h-25 w-auto p-3">
+                  <label
+                    htmlFor="exampleColorInput"
+                    className="mx-4  text-uppercase fw-bold"
+                  >
+                    Background
+                  </label>
+                  <input
+                    type="color"
+                    className=" form-control-color  "
+                    style={{ backgroundColor: "white" }}
+                    id="exampleColorInput"
+                    value={qrBGColor}
+                    title="Choose your color"
+                    onChange={(e) => setQrBGColor(e.target.value)}
+                  />
+                </div>
+              </div>
+              <hr className="mx-3" />
+
+              <div className=" my-2">
+                <QRCode
+                  className="text-center me-3"
+                  id="qrCodeEl"
+                  size={qrSize}
+                  value={qrCodeText}
+                  bgColor={qrBGColor}
+                  fgColor={qrColor}
+                  level="H"
+                />
+              </div>
+
+              <input
+                type="button"
+                className="download-btn btn btn-primary mt-2 mb-3"
+                style={{ width: "200px" }}
+                value="Download"
+                onClick={downloadQRCode}
+              />
             </div>
           </div>
         </div>
