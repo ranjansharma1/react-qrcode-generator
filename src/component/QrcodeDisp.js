@@ -1,131 +1,111 @@
-import React, { useState } from 'react';
-import QRCode from 'qrcode.react';
+import React, { useState } from "react";
+import QRCode from "qrcode.react";
 
-function QrcodeDisp() {
-  const [inputText, setInputText] = useState("");
-  const [qrCodeText, setQRCodeText] = useState("youtube.com");
+function QrcodeDisp(props) {
   const [qrColor, setQrColor] = useState("blue");
-  const [qrBGColor, setQrBGColor] = useState("#rrggbb");
+  const [qrBGColor, setQrBGColor] = useState("white");
+  const [qrSize, setQrSize] = useState("300");
 
-  // generate QR code
-  const generateQRCode = () => {
-    setQRCodeText(inputText);
+  // download QR code
+  const downloadQRCode = () => {
+    console.log("Downloading QR Code");
+    const qrCodeURL = document
+      .getElementById("qrCodeEl")
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    console.log("url: " + qrCodeURL);
+    let aEl = document.createElement("a");
+    aEl.href = qrCodeURL;
+    aEl.download = "QR_Code.png";
+    document.body.appendChild(aEl);
+    aEl.click();
+    document.body.removeChild(aEl);
   };
 
-    // download QR code
-    const downloadQRCode = () => {
-        const qrCodeURL = document.getElementById('qrCodeEl')
-          .toDataURL("image/png")
-          .replace("image/png", "image/octet-stream");
-        console.log(qrCodeURL)
-        let aEl = document.createElement("a");
-        aEl.href = qrCodeURL;
-        aEl.download = "QR_Code.png";
-        document.body.appendChild(aEl);
-        aEl.click();
-        document.body.removeChild(aEl);
-      }
   return (
     <>
-    <div className="container my-3 text-center">
-      <h1 className="text-primary fw-bold">QR Code Generator</h1>
-      <div className="input-group mb-3" style={{ margin: "0 0 " }}>
-        <input
-          className="rounded-start form-control border-primary border-2 my-4 m-1"
-          type="search"
-          placeholder="Enter URL to generate QR Code"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <input
-          className="input-group-text mx-0 btn btn-primary m-4 rounded-end"
-          type="button"
-          value="Generate"
-          onClick={generateQRCode}
-        />
-      </div>
-      
-      <div className=" d-flex justify-content-center">
-        <div className="p-2 ">
-          <QRCode
-            id="qrCodeEl"
-            size={300}
-            value={qrCodeText}
-            bgColor={qrBGColor}
-            fgColor={qrColor}
-            level="H"
+      <div className="col-5 mx-5 ">
+        <h2>QR Code Preview</h2>
+        <hr />
+        <div
+          className="text-center"
+          style={{
+            margin: "50px",
+            border: "1px solid blue",
+            height: "750px",
+            width: "600px",
+          }}
+        >
+          <h3 className="text-start mx-3 my-2 fw-bold">Select Size</h3>
+          <input
+            type="range"
+            className="form-range w-75"
+            id="customRange1"
+            min="200"
+            max="450"
+            value={qrSize}
+            onChange={(e) => setQrSize(e.target.value)}
+          />
+          <hr className="mx-3" />
+          <h3 className="text-start mx-3 my-2 fw-bold">Colour</h3>
+
+          <div className="d-flex my-3">
+            <div className="  py-2 h-25 w-auto ">
+              <label
+                htmlFor="exampleColorInput"
+                className="mx-4 text-uppercase fw-bold"
+              >
+                Dots
+              </label>
+              <input
+                type="color"
+                className=" form-control-color"
+                style={{ backgroundColor: "white" }}
+                id="exampleColorInput"
+                value={qrColor}
+                onChange={(e) => setQrColor(e.target.value)}
+              />
+            </div>
+            <div className=" py-2 h-25 w-auto p-3">
+              <label
+                htmlFor="exampleColorInput"
+                className="mx-4  text-uppercase fw-bold"
+              >
+                Background
+              </label>
+              <input
+                type="color"
+                className=" form-control-color  "
+                style={{ backgroundColor: "white" }}
+                id="exampleColorInput"
+                value={qrBGColor}
+                onChange={(e) => setQrBGColor(e.target.value)}
+              />
+            </div>
+          </div>
+          <hr className="mx-3" />
+
+          <div className=" my-2">
+            <QRCode
+              className="text-center me-3"
+              id="qrCodeEl"
+              size={qrSize}
+              value={props.qrText}
+              bgColor={qrBGColor}
+              fgColor={qrColor}
+              level="H"
+            />
+          </div>
+
+          <input
+            type="button"
+            className="download-btn btn btn-primary mt-2 mb-3"
+            style={{ width: "200px" }}
+            value="Download"
+            onClick={downloadQRCode}
           />
         </div>
-
-        <div className="p-2 my-3">
-          <label htmlFor="exampleColorInput" className="form-label">
-            QR Color
-          </label>
-          <input
-            type="color"
-            className="form-control form-control-color d-flex "
-            style={{ margin: "0 auto" }}
-            id="exampleColorInput"
-            value={qrColor}
-            title="Choose your color2"
-            onChange={(e) => setQrColor(e.target.value)}
-          />
-
-          <label htmlFor="exampleColorInput" className="form-label my-2">
-            QR-BG Color
-          </label>
-          <input
-            type="color"
-            className="form-control form-control-color d-flex  "
-            style={{ margin: "0 auto" }}
-            id="exampleColorInput"
-            value={qrBGColor}
-            title="Choose your color"
-            onChange={(e) => setQrBGColor(e.target.value)}
-          />
-        </div>
       </div>
-
-      <br />
-      <input
-        type="button"
-        className="download-btn btn btn-primary "
-        style={{ width: "200px", marginRight: "100px" }}
-        value="Download"
-        onClick={downloadQRCode}
-      />
-    </div>
-
-{/* 
-    <div className="App">
-      <h3>Generate and download a QR code image in React - <a href="https://www.cluemediator.com/" target="_blank" rel="noopener noreferrer">Clue Mediator</a></h3>
-      <div className="qr-input">
-        <input
-          type="text"
-          placeholder="Enter input"
-          value={inputText}
-          onChange={e => setInputText(e.target.value)}
-        />
-        <input
-          type="button"
-          value="Generate"
-          onClick={generateQRCode}
-        />
-      </div>
-      <QRCode
-        id="qrCodeEl"
-        size={150}
-        value={qrCodeText}
-      />
-      <br />
-      <input
-        type="button"
-        className="download-btn"
-        value="Download"
-        onClick={downloadQRCode}
-      />
-    </div> */}
-    
     </>
   );
 }
