@@ -99,15 +99,15 @@ function UserForm(props) {
 
   return (
     <>
-      <div className="container-fluid " style={{
+      <div className="container " style={{
               backgroundColor: props.mode === "light" ? "rgb(235 247 255)" : "grey",
               color: props.mode === "light" ? "black" : "white",
             }}>
         
         <div className="row ">
-          <form className="col-5 mx-2" onSubmit={generateQRCode}>
+          <form className="col mx-2" onSubmit={generateQRCode}>
           <h4>Create Your Own QR Code Just by Few Clicks</h4>
-        <hr />
+          <hr />
             <div className="container input-group"  style={{ marginTop: "30px" }}  >
               {props.show.showText && (
                 <div className="container">
@@ -466,8 +466,8 @@ function UserForm(props) {
             </div>
           </form>
 
-          <QrcodeDisp qrText={qrCodeText} mode={props.mode} showAlert={props.showAlert}/>
         </div>
+          <QrcodeDisp qrText={qrCodeText} mode={props.mode} showAlert={props.showAlert}/>
       </div>
     </>
   );

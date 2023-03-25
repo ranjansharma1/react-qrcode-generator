@@ -26,77 +26,77 @@ function Navbar(props) {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item ">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showText ? "active" : ""
-                  } btn btn-${props.mode}  px-4   my-1`}
+                  } btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("text")}
-                  style={{ width: "100px" }}
+                  style={{ width: "70px" }}
                 >
                   Text
                 </button>
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showUrl ? "active" : ""
-                  } btn btn-${props.mode}  px-4   my-1`}
+                  } btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("url")}
-                  style={{ width: "100px" }}
+                  style={{ width: "70px" }}
                 >
                   URL
                 </button>
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showPhone ? "active" : ""
-                  }   btn btn-${props.mode}  px-4   my-1`}
+                  }   btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("phone")}
-                  style={{ width: "100px" }}
+                  style={{ width: "70px" }}
                 >
                   Phone
                 </button>
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showSMS ? "active" : ""
-                  }  btn btn-${props.mode}  px-4   my-1`}
+                  }  btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("sms")}
-                  style={{ width: "100px" }}
+                  style={{ width: "70px" }}
                 >
                   SMS
                 </button>
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showVcard ? "active" : ""
-                  }  btn btn-${props.mode}  px-4   my-1`}
+                  }  btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("vcard")}
-                  style={{ width: "100px", border: "none" }}
+                  style={{ width: "70px" }}
                 >
                   V-Card
                 </button>
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showWifi ? "active" : ""
-                  }   btn btn-${props.mode}  px-4   my-1`}
+                  }   btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("wifi")}
-                  style={{ width: "100px" }}
+                  style={{ width: "70px" }}
                 >
                   Wifi
                 </button>
               </li>
               <li className="nav-item">
                 <button
-                  className={`fw-bold  nav-link ${
+                  className={` nav-link ${
                     props.show.showEmail ? "active" : ""
-                  }  btn btn-${props.mode}  px-4   my-1`}
+                  }  btn btn-${props.mode}    my-1`}
                   onClick={() => props.handleButtonClick("email")}
-                  style={{ width: "100px" }}
+                  style={{ width: "70px" }}
                 >
                   Email
                 </button>
@@ -107,7 +107,14 @@ function Navbar(props) {
               className={`form-check form-switch text-${
                 props.mode === "light" ? "dark" : "light"
               }`}
+              style={{marginRight: "20px", marginLeft: "20px"}}
             >
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
+                D/L
+              </label>
               <input
                 className="form-check-input"
                 onClick={props.toggleMode}
@@ -115,12 +122,6 @@ function Navbar(props) {
                 role="switch"
                 id="dId"
               />
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckDefault"
-              >
-                Dark Mode
-              </label>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import QRCode from "qrcode.react";
 function QrcodeDisp(props) {
   const [qrColor, setQrColor] = useState("blue");
   const [qrBGColor, setQrBGColor] = useState("white");
-  const [qrSize, setQrSize] = useState("150");
+  const [qrSize, setQrSize] = useState("70");
 
   // download QR code
   const downloadQRCode = () => {
@@ -25,16 +25,16 @@ function QrcodeDisp(props) {
 
   return (
     <>
-      <div className="col-4 mx-5 ">
+      <div className="container ">
         <h4>QR Code Preview</h4>
         <hr />
         <div
           className={`text-center border border-${props.mode === "light" ? "dark" : "white"} ` }
           style={{
-            margin: "50px",
-            height: "700px",
-            width: "600px"
-            
+            margin: "auto",
+            height: "auto",
+            width: "auto",
+            marginBottom: "20px"
           }}
         >
           <h5 className="text-start mx-3 my-2 fw-bold">Select Size</h5>
@@ -43,7 +43,7 @@ function QrcodeDisp(props) {
             className="form-range w-75"
             id="customRange1"
             min="50"
-            max="300"
+            max="200"
             value={qrSize}
             onChange={(e) => setQrSize(e.target.value)}
           />
@@ -54,7 +54,7 @@ function QrcodeDisp(props) {
             <div className="  py-2 h-25 w-auto ">
               <label
                 htmlFor="exampleColorInput"
-                className="mx-4 text-uppercase fw-bold"
+                className="mx-4 text-uppercase"
               >
                 Dots
               </label>
@@ -70,7 +70,7 @@ function QrcodeDisp(props) {
             <div className=" py-2 h-25 w-auto p-3">
               <label
                 htmlFor="exampleColorInput"
-                className="mx-4  text-uppercase fw-bold"
+                className="mx-4  text-uppercase"
               >
                 Background
               </label>
